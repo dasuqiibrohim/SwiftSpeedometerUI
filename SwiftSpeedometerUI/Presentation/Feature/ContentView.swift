@@ -8,38 +8,39 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var angle = -18.0
-    @State private var valueProgress = 0.4
+    @State private var angleDisplay = -18.0
+    @State private var progressDisplay = 0.4
+    @State private var valueDisplay: String = "0"
     
     var body: some View {
         VStack(spacing: 48)  {
             ZStack {
                 SpeedometerFace()
                 
-                GaugeArc(value: valueProgress)
+                GaugeArc(value: progressDisplay)
                 
-                GaugeNeedle(angle: angle)
+                GaugeNeedle(angle: angleDisplay)
             }
             .overlay(alignment: .bottom) {
-                Text("25k")
-                    .font(.system(size: 24, weight: .bold))
-                    .foregroundColor(.baseBlue)
-                    .padding(48)
+                GaugeValue(valueDisplay: valueDisplay)
             }
-            
             
             SubmitTextForm(
                 onTapSubmit: { value in
-                    guard let updValue = Int(value) else { return }
+                    guard let updateValue = Int(value) else { return }
                     withAnimation(.easeInOut(duration: 0.9)) {
-                        angle = interpolatedAngle(for: updValue)
-                        valueProgress = progressTrim(for: Double(updValue))
+                        angleDisplay = interpolatedAngle(for: updateValue)
+                        progressDisplay = progressTrim(for: Double(updateValue))
+                        valueDisplay = formatToK(for: Double(updateValue))
                     }
                 }
             )
         }
     }
-    
+}
+
+// Function Calculate
+extension ContentView {
     func interpolatedAngle(for input: Int) -> Double {
         /*
          0 -> -18
@@ -50,6 +51,8 @@ struct ContentView: View {
          50k -> 162
          100k+ -> 198
          */
+        
+        guard input > 0 else { return -18 }
         let ranges: [(input: Int, degree: Double)] = [
             (0, -18),
             (1_000, 18),
@@ -82,6 +85,8 @@ struct ContentView: View {
          50k   -> 0.9
          100k+ -> 1
          */
+        
+        guard input > 0 else { return 0.4 }
         let ranges: [(limit: Double, value: Double)] = [
             (0, 0.4),
             (1_000, 0.5),
@@ -106,7 +111,22 @@ struct ContentView: View {
         }
         return 1.0
     }
+    func formatToK(for input: Double) -> String {
+        guard input > 0 else { return "0" }
+        if input >= 100_000 {
+            return "100K+"
+        }
+        let inK = input / 1000.0
+        let rounded = (inK * 10).rounded() / 10  // 1 decimal
+
+        if rounded == floor(rounded) {
+            return String(format: "%.0fK", rounded)
+        } else {
+            return String(format: "%.1fK", rounded)
+        }
+    }
 }
+
 
 #Preview {
     ContentView()

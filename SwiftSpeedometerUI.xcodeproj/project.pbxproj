@@ -10,9 +10,22 @@
 		8ABE2B362E3E207700E5322E /* SwiftSpeedometerUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftSpeedometerUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		8AC4C6602E3F5F58006F9994 /* Exceptions for "SwiftSpeedometerUI" folder in "SwiftSpeedometerUI" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Core/Info.plist,
+			);
+			target = 8ABE2B352E3E207700E5322E /* SwiftSpeedometerUI */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		8ABE2B382E3E207700E5322E /* SwiftSpeedometerUI */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				8AC4C6602E3F5F58006F9994 /* Exceptions for "SwiftSpeedometerUI" folder in "SwiftSpeedometerUI" target */,
+			);
 			path = SwiftSpeedometerUI;
 			sourceTree = "<group>";
 		};
@@ -256,6 +269,7 @@
 				DEVELOPMENT_TEAM = GXW53BG9XB;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SwiftSpeedometerUI/Core/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -289,6 +303,7 @@
 				DEVELOPMENT_TEAM = GXW53BG9XB;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SwiftSpeedometerUI/Core/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
