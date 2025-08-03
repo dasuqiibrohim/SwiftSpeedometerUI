@@ -27,7 +27,7 @@ struct GaugeTicks: View {
             HStack {
                 Text("0")
                 Spacer()
-                Text("100K")
+                Text("100K+")
             }
             .padding(.horizontal, 12)
             .padding(.top, 60)
